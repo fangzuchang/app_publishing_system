@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>appPublishSystem</display-name>
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>http://localhost:8080/app</param-value>
+    </context-param>
+    <!-- 编码设置的过滤器 -->
+    <filter>
+        <filter-name>ChartSetFilter</filter-name>
+        <filter-class>com.publishsystem.filter.ChartSetFilter</filter-class>
+        <init-param>
+            <param-name>characterEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>enabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ChartSetFilter</filter-name>
+        <!-- 采用通配符：所有的地址都可以通过 -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>com.publishsystem.filter.LogFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- AdminAction -->
+    <servlet>
+        <servlet-name>AdminAction</servlet-name>
+        <servlet-class>com.publishsystem.action.AdminAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAction</servlet-name>
+        <url-pattern>/adminAction</url-pattern>
+    </servlet-mapping>
+
+    <!-- CustomerAction -->
+    <servlet>
+        <servlet-name>CustomerAction</servlet-name>
+        <servlet-class>com.publishsystem.action.CustomerAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerAction</servlet-name>
+        <url-pattern>/customerAction</url-pattern>
+    </servlet-mapping>
+
+    <!-- AppAndCustomerAction -->
+    <servlet>
+        <servlet-name>AppAndCustomerAction</servlet-name>
+        <servlet-class>com.publishsystem.action.CustomerAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppAndCustomerAction</servlet-name>
+        <url-pattern>/appAndCustomerAction</url-pattern>
+    </servlet-mapping>
+
+    <!--首页 start-->
+    <servlet>
+        <servlet-name>HomePageAction</servlet-name>
+        <servlet-class>com.publishsystem.action.HomePageAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomePageAction</servlet-name>
+        <url-pattern>/homePageAction</url-pattern>
+    </servlet-mapping>
+    <!--    首页 end-->
+    <!--二维码start-->
+    <servlet>
+        <servlet-name>CaptchaAction</servlet-name>
+        <servlet-class>com.publishsystem.action.CaptchaAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CaptchaAction</servlet-name>
+        <url-pattern>/captchaAction</url-pattern>
+    </servlet-mapping>
+    <!--二维码end-->
+    <!--app管理 start-->
+    <servlet>
+        <servlet-name>AppAction</servlet-name>
+        <servlet-class>com.publishsystem.action.AppAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppAction</servlet-name>
+        <url-pattern>/appAction</url-pattern>
+    </servlet-mapping>
+    <!--app管理 end-->
+    <!--<listener>
+        <listener-class>com.publishsystem.listen.LoginSessionListener</listener-class>
+    </listener>-->
+    <!-- session有效时长 -->
+    <session-config>
+        <session-timeout>180</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
